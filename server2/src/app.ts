@@ -6,7 +6,7 @@ export class App {
   public app: express.Application
   public exampleRoute: ExampleRoute
 
-  contructor(){
+  constructor(){
     this.app = express()
     this.config()
     this.exampleRoute = new ExampleRoute()
