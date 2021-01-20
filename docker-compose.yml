@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  server1:
+    build: ./server1
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: typescript-server1-rabbitmq
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 5001:5000
+    volumes:
+      - ./server1:/home/node/server1
+    depends_on:
+      - rabbitmq
+
+  server2:
+    build: ./server2
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: typescript-server2-rabbitmq
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 3001:3000
+    volumes:
+      - ./server2:/home/node/server2
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: "rabbitmq:3.8-management-alpine"
+    container_name: typescript-rabbitmq-rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - "./.rabbitmq_data:/var/lib/rabbitmq/mnesia"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
