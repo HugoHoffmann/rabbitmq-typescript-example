@@ -11,6 +11,6 @@ export class ExampleRoute{
   }
 
   public routes(app: Application): void {
-    app.route('dispatch-pub').get(this.exampleController.dispatchPub.bind(this.exampleController))
+    app.route('/dispatch-pub').get(this.exampleController.dispatchPub.bind(this.exampleController))
   }
 }
