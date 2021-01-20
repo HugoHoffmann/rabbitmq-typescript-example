@@ -3,7 +3,6 @@ version: "3"
 services:
   server1:
     build: ./server1
-    entrypoint: ./.docker/entrypoint.sh
     container_name: typescript-server1-rabbitmq
     environment:
       - CHOKIDAR_USEPOLLING=true
@@ -16,7 +15,6 @@ services:
 
   server2:
     build: ./server2
-    entrypoint: ./.docker/entrypoint.sh
     container_name: typescript-server2-rabbitmq
     environment:
       - CHOKIDAR_USEPOLLING=true
