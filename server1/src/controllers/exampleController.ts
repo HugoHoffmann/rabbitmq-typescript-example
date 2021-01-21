@@ -8,7 +8,8 @@ export class ExampleController{
     this.exampleService = new ExampleService()
   }
 
-  public dispatchPub(req: Request, res: Response){
+  public async dispatchPub(req: Request, res: Response){
+    await this.exampleService.sendMessageToQueue()
     res.status(200).json({ok: true})
   }
 }
