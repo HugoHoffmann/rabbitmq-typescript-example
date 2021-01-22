@@ -15,6 +15,7 @@ export class RabbitmqService {
   }
 
   public async publichInQueue(queue: string, message: string){
+    await this.channel.assertQueue(queue)
     return this.channel.sendToQueue(queue, Buffer.from(message))
   }
 
